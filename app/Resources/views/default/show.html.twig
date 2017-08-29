@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+	<h1>{{ post.title }}</h1>
+	
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			{{ post.title }}
+		</div>
+		<div class="panel-body">
+			<div>
+				{{ post.content }}
+			</div>
+			<div>
+				{{ post.createdAt|date('Y-m-d') }}
+			</div>
+		</div>
+	</div>
+			
+	<h3>Komentarze</h3>
+	
+	{% for comment in post.comments %}
+		<div>
+			<p>
+				{{ comment.content }}
+			</p>
+			{{ comment.createdAt|date('Y-m-d H:i') }}
+		</div>
+	{% endfor %}
+	
+	{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<input type="submit" class="btn btn-primary pull-right" value="Dodaj" />
+	{{ form_end(form) }}
+	
+	
+{% endblock %}
